@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts  Account[] // a user can have multiple accounts linked to them
+  exercises Exercise[] // a user can have multiple exercises
+  locations Location[] // a user has locations unqiue to them
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) // link the id from account to user together
+
+  @@unique([provider, providerAccountId])
+}
+
+model Exercise {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+}
+
+model ExerciseInWorkout {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  exerciseName String
+  exerciseInfo ExerciseInfo[]
+
+  workout Workout @relation(fields: [id], references: [id], onDelete: Cascade)
+}
+
+model ExerciseInfo {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  sets   Int
+  reps   Int
+  weight Int
+  RPE    Int?
+  notes  String?
+
+  exerciseInWorkout ExerciseInWorkout @relation(fields: [id], references: [id], onDelete: Cascade)
+}
+
+model Workout {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  date     DateTime
+  location String?
+  notes    String?
+
+  exercises ExerciseInWorkout[]
+}
+
+model Location {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+}
