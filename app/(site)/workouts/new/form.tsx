@@ -8,14 +8,27 @@ import {
   MdOutlineStickyNote2,
 } from 'react-icons/md'
 import Button from '@/app/components/ui/button'
-import { Exercises, Workout } from '@/app/libs/types'
-import { BASE_EXERCISE } from '@/app/libs/data'
-import ExerciseForm from '@/app/components/exercise-form'
-import { useState } from 'react'
-import {
-  handleAddExercise,
-  handleDeleteExercise,
-} from '@/app/helpers/workout-form-helpers'
+import { Exercises, Workout, UserHistory } from '@/app/libs/types'
+import ExerciseForm from '@/app/(site)/workouts/new/exercise-form'
+import { useEffect, useState } from 'react'
+import SearchInput from '@/app/components/ui/search-input'
+import { toast } from 'react-hot-toast'
+
+import { useRouter } from 'next/navigation'
+import fetchUserWorkouts from '@/app/helpers/fetch-user-workouts'
+import { getUniqueHistory } from '@/app/helpers/filter-history-data'
+
+export const BASE_EXERCISE = {
+  name: '',
+  sets: [
+    {
+      sets: null,
+      reps: null,
+      weight: null,
+      rpe: null,
+    },
+  ],
+}
 
 export default function NewWorkoutForm({ session }: any) {
   const [exercisesData, setExercisesData] = useState<Exercises>([BASE_EXERCISE])
@@ -25,8 +38,32 @@ export default function NewWorkoutForm({ session }: any) {
     location: '',
     notes: '',
   })
+  const [userHistory, setUserHistory] = useState<UserHistory>({
+    names: [],
+    locations: [],
+    exercises: [],
+  })
+  const router = useRouter()
 
-  console.log('user token', session.user.accessToken)
+  useEffect(() => {
+    const fetchData = async () => {
+      const workouts = await fetchUserWorkouts(session?.user.id)
+      setUserHistory(getUniqueHistory(workouts))
+    }
+    fetchData()
+  }, [])
+
+  const handleAddExercise = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault()
+    setExercisesData((prev) => [...prev, BASE_EXERCISE])
+  }
+
+  const handleDeleteExercise = (index: number) => {
+    const updatedExercises = exercisesData.filter((_, i) => i !== index)
+    setExercisesData(updatedExercises)
+  }
 
   return (
     <form
@@ -36,11 +73,9 @@ export default function NewWorkoutForm({ session }: any) {
           ...workoutData,
           exercises: exercisesData,
         }
-        await axios.post('/api/workouts/create', data, {
-          headers: {
-            Authorization: `Bearer ${session.user.accessToken}`,
-          },
-        })
+        await axios.post('/api/workouts/create', data)
+        router.push('/diary')
+        toast.success(`Your ${workoutData.name} workout has been saved!`)
       }}
       // must user server action to utilize formStatus -> refactor w/o state
     >
@@ -51,19 +86,21 @@ export default function NewWorkoutForm({ session }: any) {
         >
           Workout Name
         </label>
-        <div className="mt-2">
-          <input
-            id="workout-name"
-            name="workout-name"
-            type="text"
-            value={workoutData.name}
-            onChange={(e) =>
-              setWorkoutData({ ...workoutData, name: e.target.value })
-            }
-            required
-            className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-          />
-        </div>
+
+        <SearchInput
+          searchType="name"
+          changeValue={(input: string) => {
+            setWorkoutData({ ...workoutData, name: input })
+          }}
+          userId={session?.user.id}
+          userHistory={userHistory}
+          id="workout-name"
+          name="workout-name"
+          type="text"
+          value={workoutData.name}
+          required
+          className={`block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 `}
+        />
       </div>
       <div>
         <label
@@ -86,33 +123,38 @@ export default function NewWorkoutForm({ session }: any) {
         >
           <MdOutlineLocationOn className="inline-block" /> Location
         </label>
-        <div className="mt-2">
-          <input
-            id="location"
-            name="location"
-            type="text"
-            className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-          />
-        </div>
+        <SearchInput
+          searchType="location"
+          changeValue={(input: string) => {
+            setWorkoutData({ ...workoutData, location: input })
+          }}
+          userId={session?.user.id}
+          userHistory={userHistory}
+          id="location"
+          name="location"
+          type="text"
+          value={workoutData.location}
+          className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+        />
       </div>
       <section className="flex flex-col gap-3">
         {exercisesData.map((_: any, i: number) => {
           return (
             <ExerciseForm
               key={i}
+              userId={session?.user.id}
               setExercisesData={setExercisesData}
               exercisesData={exercisesData}
               exerciseIndex={i}
-              onDelete={(i) =>
-                handleDeleteExercise(i, exercisesData, setExercisesData)
-              }
+              userHistory={userHistory}
+              onDelete={(i) => handleDeleteExercise(i)}
             />
           )
         })}
         <div className="mt-3">
           <button
             className="block text-sm font-medium leading-6 underline"
-            onClick={(e) => handleAddExercise(e, setExercisesData)}
+            onClick={(e) => handleAddExercise(e)}
           >
             Add Exercise
           </button>
@@ -143,6 +185,7 @@ export default function NewWorkoutForm({ session }: any) {
         <Button
           pill
           success
+          type="submit"
         >
           Save <MdOutlineSaveAlt className="inline-block" />
         </Button>

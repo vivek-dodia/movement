@@ -4,7 +4,6 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
@@ -44,34 +43,17 @@ export const authOptions = {
         if (!passwordsMatch) {
           throw new Error('Incorrect password')
         }
-
-        const accessToken = jwt.sign(
-          { id: user.id },
-          process.env.SECRET as string,
-          {}
-        )
-
-        user.accessToken = accessToken
-
         return user
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user, account }: any) {
-      if (user) {
-        token.id = user.id
-        token.accessToken = user.accessToken
-        return token
-      }
-      if (account) {
-        token.accessToken = account.access_token
-      }
+      if (user) token.id = user.id
       return token
     },
     async session({ session, token, user }: any) {
       session.user.id = token.id
-      session.user.accessToken = token.accessToken
       return session
     },
   },
@@ -84,4 +66,4 @@ export const authOptions = {
 
 const handler = NextAuth(authOptions as any)
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST, handler as PUT, handler as DELETE }

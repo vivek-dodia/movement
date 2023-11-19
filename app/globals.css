@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+button:focus {
+  @apply outline-blue-600;
+}
+
 .other-option {
   line-height: 16px;
   font-weight: normal;

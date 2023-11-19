@@ -27,7 +27,7 @@ export default function RootLayout({
           <ToasterContext />
           <Navbar />
           <PrimeReactProvider>
-            <main className="max-w-[1250px] w-full mt-10 px-5 xl:px-0 ">
+            <main className="max-w-[1250px] w-full my-10 px-5 xl:px-0 ">
               {children}
             </main>
           </PrimeReactProvider>

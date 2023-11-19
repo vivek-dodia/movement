@@ -18,6 +18,7 @@ const config: Config = {
         lg: '850px',
         md: '700px',
         sm: '550px',
+        xs: '400px',
       },
     },
   },

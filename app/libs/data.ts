@@ -16,15 +16,3 @@ export const exerciseFormInputs = [
     label: 'RPE',
   },
 ] as const
-
-export const BASE_EXERCISE = {
-  name: '',
-  sets: [
-    {
-      sets: null,
-      reps: null,
-      weight: null,
-      rpe: null,
-    },
-  ],
-}

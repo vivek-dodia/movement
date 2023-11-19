@@ -20,9 +20,8 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts  Account[] // a user can have multiple accounts linked to them
-  exercises Exercise[] // a user can have multiple exercises
-  locations Location[] // a user has locations unqiue to them
+  accounts Account[] // a user can have multiple accounts linked to them
+  workouts Workout[] // a user can have multiple workouts
 }
 
 model Account {
@@ -44,47 +43,14 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Exercise {
+model Workout {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  date      DateTime
+  location  String?
+  notes     String?
+  exercises Json?
+  userId    String   @db.ObjectId
 
-  user User @relation(fields: [id], references: [id], onDelete: Cascade)
-}
-
-model ExerciseInWorkout {
-  id           String         @id @default(auto()) @map("_id") @db.ObjectId
-  exerciseName String
-  exerciseInfo ExerciseInfo[]
-
-  workout Workout @relation(fields: [id], references: [id], onDelete: Cascade)
-}
-
-model ExerciseInfo {
-  id     String  @id @default(auto()) @map("_id") @db.ObjectId
-  sets   Int
-  reps   Int
-  weight Int
-  RPE    Int?
-  notes  String?
-
-  exerciseInWorkout ExerciseInWorkout @relation(fields: [id], references: [id], onDelete: Cascade)
-}
-
-model Workout {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  date     DateTime
-  location String?
-  notes    String?
-
-  exercises ExerciseInWorkout[]
-}
-
-model Location {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-
-  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

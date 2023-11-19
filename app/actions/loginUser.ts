@@ -12,13 +12,19 @@ export const handleLogin = async (
   data: loginUserType,
   router: AppRouterInstance
 ) => {
-  await signIn('credentials', { ...data, redirect: false }).then((callback) => {
-    if (callback?.error) {
-      toast.error(callback.error)
-    } else if (callback?.ok) {
-      router.refresh()
-      toast.success('Welcome back!')
-      router.push('/')
-    }
-  })
+  try {
+    await signIn('credentials', { ...data, redirect: false }).then(
+      (callback) => {
+        if (callback?.error) {
+          toast.error(callback.error)
+        } else if (callback?.ok) {
+          router.refresh()
+          toast.success('Welcome back!')
+          router.push('/')
+        }
+      }
+    )
+  } catch (e) {
+    console.log(e)
+  }
 }

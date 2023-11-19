@@ -32,8 +32,10 @@ export async function POST(request: Request) {
         password: hashedPassword,
       },
     })
+    prisma.$disconnect()
     return NextResponse.json(user)
   } catch (e) {
+    prisma.$disconnect()
     return new NextResponse('Something went wrong.', { status: 404 })
   }
 }
