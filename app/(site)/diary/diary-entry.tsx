@@ -1,12 +1,7 @@
 'use client'
 
 import { WorkoutInDb } from '@/app/libs/types'
-import {
-  MdOutlineCalendarMonth,
-  MdOutlineLocationOn,
-  MdOutlineSaveAlt,
-  MdOutlineStickyNote2,
-} from 'react-icons/md'
+import { MdOutlineLocationOn } from 'react-icons/md'
 import { PiBarbellBold } from 'react-icons/pi'
 
 export default function DiaryEntry(workout: WorkoutInDb) {

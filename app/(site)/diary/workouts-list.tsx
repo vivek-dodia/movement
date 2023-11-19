@@ -59,6 +59,24 @@ export default function WorkoutsList({ workoutsData }: WorkoutsListProps) {
       setWorkouts(workoutsData)
       return
     }
+
+    const filteredWorkouts = workoutsData.filter((workout) => {
+      const nameFilter =
+        selectedOptions.workouts.length === 0 ||
+        selectedOptions.workouts.includes(workout.name)
+      const locationFilter =
+        selectedOptions.locations.length === 0 ||
+        selectedOptions.locations.includes(workout.location)
+      const exerciseFilter =
+        selectedOptions.exercises.length === 0 ||
+        workout.exercises.some((exercise) =>
+          selectedOptions.exercises.includes(exercise.name)
+        )
+
+      return nameFilter && locationFilter && exerciseFilter
+    })
+
+    setWorkouts(filteredWorkouts)
   }, [selectedOptions])
 
   useEffect(() => {
@@ -127,7 +145,6 @@ export default function WorkoutsList({ workoutsData }: WorkoutsListProps) {
         >
           {filter.label}
         </h5>
-
         {userHistory[filter.value].map((option, index: number) => {
           const isChecked =
             selectedFilter && selectedOptions[selectedFilter].includes(option)
