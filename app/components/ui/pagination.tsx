@@ -62,12 +62,12 @@ export default function PaginatedList({
           if (page !== 1 && activePage - 1 > page) {
             if (!backDots) {
               backDots = true
-              return <span>...</span>
+              return <span key={index}>...</span>
             } else return
           } else if (page !== totalPages && activePage + 1 < page) {
             if (!frontDots) {
               frontDots = true
-              return <span>...</span>
+              return <span key={index}>...</span>
             } else return
           }
 
