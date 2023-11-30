@@ -19,7 +19,9 @@ export async function POST(request: Request) {
   })
 
   if (exists) {
-    throw new Error('Email already linked to an account.')
+    return new NextResponse('User with this email address already exists.', {
+      status: 400,
+    })
   }
 
   const hashedPassword = await bcrypt.hash(password, 10)
@@ -36,6 +38,6 @@ export async function POST(request: Request) {
     return NextResponse.json(user)
   } catch (e) {
     prisma.$disconnect()
-    return new NextResponse('Something went wrong.', { status: 404 })
+    return new NextResponse('Something went wrong.', { status: 500 })
   }
 }

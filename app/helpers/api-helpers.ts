@@ -12,6 +12,10 @@ export const validateExercises = (exercises: Exercises) => {
       exercise.sets.length === 0
     ) {
       throw new Error('Must include a name and at least one set.')
+    } else {
+      exercise.name = exercise.name.trim()
     }
   })
+
+  return exercises
 }

@@ -5,6 +5,7 @@ import Provider from './context/AuthContext'
 import ToasterContext from './context/ToasterContext'
 import Navbar from './components/navbar'
 import { PrimeReactProvider } from 'primereact/api'
+import Footer from './components/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,11 +28,13 @@ export default function RootLayout({
           <ToasterContext />
           <Navbar />
           <PrimeReactProvider>
-            <main className="max-w-[1250px] w-full my-10 px-5 xl:px-0 ">
+            <main className="max-w-[1100px] w-full my-10 px-5 xl:px-0 min-h-[95vh]">
               {children}
             </main>
           </PrimeReactProvider>
+          <Footer />
         </Provider>
+        <div className="portal"></div>
       </body>
     </html>
   )

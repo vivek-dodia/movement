@@ -6,6 +6,16 @@ button:focus {
   @apply outline-blue-600;
 }
 
+p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+canvas {
+  @apply !w-full;
+}
+
 .other-option {
   line-height: 16px;
   font-weight: normal;

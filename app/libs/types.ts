@@ -89,7 +89,7 @@ export type WorkoutInDb = {
   location: string
   exercises: Exercises
   notes: string
-  _id: string
+  id: string
 }
 
 export type Session = {
@@ -100,3 +100,44 @@ export type Session = {
     image: string | null | undefined
   }
 }
+
+export type MaxSets = {
+  weight: number
+  reps: number
+  date: Date
+}
+
+export type ExerciseData = {
+  exercise: string
+  maxSets: MaxSets[] | null
+  pr: {
+    weight: number
+    rpe: number | string | null
+    sets: number | null
+  }
+  totalSets: number
+  totalReps: number
+  totalWorkouts: number
+}
+
+export type DashboardData = {
+  locations: Map<string, number>
+  popularExercises: Map<string, number>
+  popularWorkouts: Map<string, number>
+  exercisePRs: Map<string, number>
+  totals: {
+    workouts: number
+    exercises: number
+    reps: number
+    sets: number
+  }
+  weights: WeightEntries
+}
+
+export type WeightEntry = {
+  weight: number
+  date: Date
+  id: string
+}
+
+export type WeightEntries = WeightEntry[]

@@ -4,23 +4,19 @@ import { Calendar } from 'primereact/calendar'
 
 //theme
 import 'primereact/resources/themes/tailwind-light/theme.css'
-import { Workout } from '@/app/libs/types'
 
-type DatePickerProps = {
-  workoutData: Workout
-  setWorkoutData: (prev: Workout) => void
+type DatePickerProps<T extends Record<string, any>> = {
+  data: T
+  setData: (prev: T) => void
 }
-
-export default function DatePicker({
-  workoutData,
-  setWorkoutData,
-}: DatePickerProps) {
+export default function DatePicker<T extends Record<any, any>>({
+  data,
+  setData,
+}: DatePickerProps<T>) {
   return (
     <Calendar
-      value={workoutData.date}
-      onChange={(e) =>
-        setWorkoutData({ ...workoutData, date: e.value || null })
-      }
+      value={data.date}
+      onChange={(e) => setData({ ...data, date: e.value || null })}
     />
   )
 }

@@ -36,8 +36,8 @@ export const filterHistoryData = (
       exercise.toLowerCase().startsWith(query.toLowerCase())
     )
   } else if (searchType === 'name') {
-    arr = data.exercises.filter((name) =>
-      name.toLowerCase().startsWith(query.toLowerCase())
+    arr = data.workouts.filter((workout) =>
+      workout.toLowerCase().startsWith(query.toLowerCase())
     )
   } else if (searchType === 'location') {
     arr = data.locations.filter((location) =>

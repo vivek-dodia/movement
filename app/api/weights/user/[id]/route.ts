@@ -2,18 +2,24 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '../../../../libs/prismadb'
 
 export async function GET(
-  req: NextRequest,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   const { id } = params
+
   let res = []
   try {
-    res = await prisma.workout.findMany({
+    res = await prisma.weightEntry.findMany({
       where: {
         userId: id,
       },
+      select: {
+        weight: true,
+        date: true,
+        id: true,
+      },
       orderBy: {
-        date: 'desc',
+        date: 'asc',
       },
     })
   } catch (e) {

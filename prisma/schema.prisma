@@ -22,6 +22,7 @@ model User {
 
   accounts Account[] // a user can have multiple accounts linked to them
   workouts Workout[] // a user can have multiple workouts
+  weights  WeightEntry[]
 }
 
 model Account {
@@ -53,4 +54,15 @@ model Workout {
   userId    String   @db.ObjectId
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model WeightEntry {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  weight Float
+  date   DateTime
+  userId String   @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([date, userId])
 }

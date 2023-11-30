@@ -1,17 +1,23 @@
-import NewWorkoutForm from './form'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import WorkoutForm from '@/app/components/workout-form/workout-form'
+import ProtectRoute from '@/app/components/protect-route'
+import { getSession } from '@/app/helpers/get-session'
 
 export default async function NewWorkout() {
-  const session = await getServerSession(authOptions as any)
+  const session = await getSession()
+
+  if (!session) {
+    return (
+      <ProtectRoute message="You must be logged in to create a new workout." />
+    )
+  }
 
   return (
-    <section className="flex min-h-full flex-1 flex-col justify-center py-12 lg:px-8">
+    <section className="flex min-h-full flex-1 flex-col justify-center  lg:px-8">
       <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight ">
         New Workout
       </h2>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <NewWorkoutForm session={session} />
+        <WorkoutForm session={session} />
       </div>
     </section>
   )

@@ -1,6 +1,5 @@
 'use client'
 
-import { useContext } from 'react'
 import { SessionProvider } from 'next-auth/react'
 
 type AuthContextProps = {
