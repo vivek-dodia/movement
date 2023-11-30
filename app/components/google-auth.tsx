@@ -19,7 +19,9 @@ export default function GoogleAuthButton({ signin }: GoogleAuthButtonProps) {
       </div>
       <button
         onClick={async () => {
-          await signIn('google', { callbackUrl: 'https://movement.vercel.app' })
+          await signIn('google', {
+            callbackUrl: 'https://movement-next.vercel.app',
+          })
         }}
         className="flex gap-2 items-center w-full justify-center transition-all rounded-md bg-white ring-1 ring-inset ring-gray-300 px-3 py-1.5 text-sm font-medium leading-6 text-gray-950 shadow-sm disabled:bg-gray-300 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:scale-[0.99]"
       >

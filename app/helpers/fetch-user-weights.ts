@@ -1,6 +1,6 @@
 export const fetchUserWeights = async (userId: string) => {
   const res = await fetch(
-    `https://movement.vercel.app/api/weights/user/${userId}`
+    `https://movement-next.vercel.app/api/weights/user/${userId}`
   )
 
   if (!res.ok) {
