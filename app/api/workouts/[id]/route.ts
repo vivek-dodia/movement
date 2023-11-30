@@ -1,14 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '../../../libs/prismadb'
 import { validateExercises } from '@/app/helpers/api-helpers'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '../../auth/[...nextauth]/route'
+import { getSession } from '@/app/helpers/get-session'
+import { Session } from '@/app/libs/types'
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   const { id } = params
+
+  if (!id) {
+    return NextResponse.json(
+      { error: 'Workout ID is required' },
+      { status: 400 }
+    )
+  }
+
   let res
   try {
     res = await prisma.workout.findUnique({
@@ -32,8 +40,7 @@ export async function PUT(
   var { name, date, location, notes, exercises } = await req.json()
   const { id } = params
 
-  const session = await getServerSession(authOptions as any)
-
+  const session = await getSession()
   if (!session) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
   }
@@ -64,7 +71,7 @@ export async function PUT(
 
   const user = await prisma.user.findUnique({
     where: {
-      id: (session as any)?.user.id,
+      id: session.user.id,
     },
   })
 
@@ -72,23 +79,10 @@ export async function PUT(
     return NextResponse.json({ error: 'Could not find user.' }, { status: 401 })
   }
 
-  const workout = await prisma.workout.findUnique({
-    where: {
-      id,
-      userId: user.id,
-    },
-  })
-
-  if (!workout) {
-    return NextResponse.json(
-      { error: 'Could not find workout.' },
-      { status: 401 }
-    )
-  }
-
   const updatedWorkout = await prisma.workout.update({
     where: {
       id,
+      userId: user.id,
     },
     data: {
       name: name.trim(),
@@ -115,7 +109,7 @@ export async function DELETE(
     )
   }
 
-  const session = await getServerSession(authOptions as any)
+  const session = await getSession()
 
   if (!session) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
@@ -123,7 +117,7 @@ export async function DELETE(
 
   const user = await prisma.user.findUnique({
     where: {
-      id: (session as any)?.user.id,
+      id: session.user.id,
     },
   })
 
@@ -135,6 +129,7 @@ export async function DELETE(
     const deletedWorkout = await prisma.workout.delete({
       where: {
         id,
+        userId: user.id,
       },
     })
     return NextResponse.json(deletedWorkout)

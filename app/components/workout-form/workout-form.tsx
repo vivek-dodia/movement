@@ -83,32 +83,47 @@ export default function WorkoutForm({ session, workout }: WorkoutFormProps) {
 
   const handleDeleteWorkout = async () => {
     if (!workout) return
-    await axios.delete(`/api/workouts/${workout.id}`)
-    setOpenDeleteWarning(false)
-    toast.success(`Your ${workoutData.name} workout has been deleted!`)
-    router.replace('/workouts')
-    router.refresh()
+
+    try {
+      await axios.delete(`/api/workouts/${workout.id}`)
+      setOpenDeleteWarning(false)
+      toast.success(`Your ${workoutData.name} workout has been deleted!`)
+      router.replace('/workouts')
+      router.refresh()
+    } catch (e: any) {
+      if (e.response.data.error) toast.error(e.response.data.error)
+      else toast.error('Something went wrong')
+    }
+  }
+
+  const handleSubmitWorkout = async () => {
+    const data = {
+      ...workoutData,
+      exercises: exercisesData,
+    }
+
+    try {
+      if (workout) {
+        await axios.put(`/api/workouts/${workout.id}`, data)
+        toast.success(`Your ${workoutData.name} workout has been updated!`)
+      } else {
+        await axios.post('/api/workouts', data)
+        toast.success(`Your ${workoutData.name} workout has been saved!`)
+      }
+      router.replace('/workouts')
+      router.refresh()
+    } catch (e: any) {
+      if (e.response.data.error) toast.error(e.response.data.error)
+      else toast.error('Something went wrong')
+    }
   }
 
   return (
     <form
       className="space-y-6"
       action={async (e) => {
-        const data = {
-          ...workoutData,
-          exercises: exercisesData,
-        }
-        if (workout) {
-          await axios.put(`/api/workouts/${workout.id}`, data)
-          toast.success(`Your ${workoutData.name} workout has been updated!`)
-        } else {
-          await axios.post('/api/workouts', data)
-          toast.success(`Your ${workoutData.name} workout has been saved!`)
-        }
-        router.replace('/workouts')
-        router.refresh()
+        await handleSubmitWorkout()
       }}
-      // must user server action to utilize formStatus -> refactor w/o state
     >
       <div>
         <label

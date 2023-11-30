@@ -1,10 +1,9 @@
 import { NavContextProvider } from '../context/NavContext'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
 import NavContent from './navbar/navbar-content'
+import { getSession } from '../helpers/get-session'
 
 export default async function Navbar() {
-  const session = await getServerSession(authOptions as any)
+  const session = await getSession()
 
   return (
     <NavContextProvider>

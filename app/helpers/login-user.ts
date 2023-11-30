@@ -19,12 +19,12 @@ export const handleLogin = async (
           toast.error(callback.error)
         } else if (callback?.ok) {
           router.refresh()
-          toast.success('Welcome back!')
+          toast.success('Welcome!')
           router.push('/')
         }
       }
     )
   } catch (e) {
-    console.log(e)
+    toast.error('Something went wrong.')
   }
 }

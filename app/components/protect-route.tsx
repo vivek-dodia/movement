@@ -36,7 +36,7 @@ export default function ProtectRoute({
         ) : workout ? (
           <Link
             className="font-semibold hover:underline text-blue-600 "
-            href="/new"
+            href="/workouts/new"
           >
             Add a workout
             <PiArrowRightBold className="inline-block font-bold ml-2" />

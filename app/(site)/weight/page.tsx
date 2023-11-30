@@ -4,6 +4,7 @@ import WeightForm from './form'
 import { Fragment } from 'react'
 import WeightChart from './chart'
 import { fetchUserWeights } from '@/app/helpers/fetch-user-weights'
+import { Session } from '@/app/libs/types'
 
 export default async function LogWeight() {
   const session = await getSession()
@@ -14,7 +15,7 @@ export default async function LogWeight() {
     )
   }
 
-  const userId = (session as any).user.id
+  const userId = session.user.id
 
   const weightEntries = await fetchUserWeights(userId)
 
@@ -43,8 +44,26 @@ export default async function LogWeight() {
         >
           {weightEntries.length >= 2 ? (
             <WeightChart weightEntries={weightEntries} />
+          ) : weightEntries.length === 1 ? (
+            <p className="text-center text-sm ">
+              Add at least two weight entries to view weight chart. Previous
+              weight:{' '}
+              <span className="font-medium">
+                {weightEntries[0]?.weight}
+                {' lbs'}
+              </span>{' '}
+              on{' '}
+              <span className="font-medium">
+                {' '}
+                {new Date(weightEntries[0]?.date).toLocaleDateString('en-US', {
+                  month: 'numeric',
+                  day: 'numeric',
+                  year: 'numeric',
+                })}
+              </span>
+            </p>
           ) : (
-            <p className="text-center text-sm">
+            <p className="text-center text-sm ">
               Add at least two weight entries to view weight chart.
             </p>
           )}

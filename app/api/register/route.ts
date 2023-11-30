@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
   const { name, email, password } = data
   if (!name || !email || !password) {
-    return new NextResponse('Missing Fields.', { status: 400 })
+    return NextResponse.json({ error: 'Missing Fields.' }, { status: 400 })
   }
 
   const exists = await prisma.user.findUnique({
@@ -19,9 +19,12 @@ export async function POST(request: Request) {
   })
 
   if (exists) {
-    return new NextResponse('User with this email address already exists.', {
-      status: 400,
-    })
+    return NextResponse.json(
+      { error: 'User with this email address already exists.' },
+      {
+        status: 400,
+      }
+    )
   }
 
   const hashedPassword = await bcrypt.hash(password, 10)
@@ -38,6 +41,9 @@ export async function POST(request: Request) {
     return NextResponse.json(user)
   } catch (e) {
     prisma.$disconnect()
-    return new NextResponse('Something went wrong.', { status: 500 })
+    return NextResponse.json(
+      { error: 'Something went wrong.' },
+      { status: 500 }
+    )
   }
 }

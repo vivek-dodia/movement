@@ -67,7 +67,6 @@ export const getWeightChart = (weightEntries: WeightEntries) => {
       tooltip: {
         callbacks: {
           label: function (context: any) {
-            console.log(context)
             return `${context.dataset.label}: ${context.parsed.y} lbs`
           },
         },
@@ -110,7 +109,7 @@ export const getWeightChart = (weightEntries: WeightEntries) => {
       />
     </div>
   ) : (
-    noChartMessage('Record at least two weights to view this chart.')
+    noChartMessage('Record your weight twice to view this chart.')
   )
 }
 
@@ -335,6 +334,8 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
     },
   }
 
+  console.log(dashboardData.exercisePRs)
+
   const PrBarData = {
     labels: Array.from(dashboardData.exercisePRs.keys()),
     datasets: [
@@ -512,9 +513,13 @@ export const getExerciseChart = (exerciseData: ExerciseData) => {
       },
       tooltip: {
         callbacks: {
-          label: function (context: any) {
-            console.log(context)
-            return `${context.dataset.label}: ${context.parsed.y} lbs`
+          label: (val: any) => {
+            const index = val.dataIndex
+            if (exerciseData.maxSets) {
+              const set = exerciseData.maxSets[index]
+              return `${set.weight} lbs - ${set.reps} reps`
+            }
+            return ''
           },
         },
         displayColors: false,

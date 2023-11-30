@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '../../libs/prismadb'
 import { validateExercises } from '@/app/helpers/api-helpers'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '../auth/[...nextauth]/route'
+import { getSession } from '@/app/helpers/get-session'
+import { Session } from '@/app/libs/types'
 
 export async function POST(request: Request) {
   var { name, date, location, notes, exercises } = await request.json()
 
-  const session = await getServerSession(authOptions as any)
+  const session = await getSession()
 
   if (!session) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
 
   const user = await prisma.user.findUnique({
     where: {
-      id: (session as any)?.user.id,
+      id: session.user.id,
     },
   })
 
@@ -55,5 +55,5 @@ export async function POST(request: Request) {
     },
   })
 
-  return NextResponse.json(null)
+  return NextResponse.json(workout)
 }

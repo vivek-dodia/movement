@@ -50,18 +50,24 @@ export default function WeightForm({
       toast.success(
         `Weight successully ${weightEntryId ? 'updated' : 'added'}!`
       )
-    } catch (e) {
-      console.log(e)
+    } catch (e: any) {
+      if (e.response.data.error) toast.error(e.response.data.error)
+      else toast.error('Something went wrong.')
     }
   }
 
   const handleDeleteWeight = async () => {
     if (!weightEntryId) return
-    await axios.delete(`/api/weights/${weightEntryId}`)
-    setOpenDeleteWarning(false)
-    toast.success(`Your weight has been removed.`)
-    router.replace('/weight')
-    router.refresh()
+    try {
+      await axios.delete(`/api/weights/${weightEntryId}`)
+      setOpenDeleteWarning(false)
+      toast.success(`Your weight has been removed.`)
+      router.replace('/weight')
+      router.refresh()
+    } catch (e: any) {
+      if (e.response.data.error) toast.error(e.response.data.error)
+      else toast.error('Something went wrong.')
+    }
   }
 
   return (

@@ -53,12 +53,12 @@ export default function ExerciseStats({ exerciseData }: ExerciseStatsProps) {
             ))}
           </ul>
           <div>
-            {exerciseData?.maxSets && exerciseData?.maxSets?.length >= 5 ? (
+            {exerciseData?.maxSets && exerciseData?.maxSets?.length >= 2 ? (
               getExerciseChart(exerciseData)
             ) : (
               <div className="border rounded-md text-center py-10 px-4 text-sm">
                 <p>
-                  Need 5 workouts with recorded weights to render a progress
+                  Need 2 workouts with recorded weights to render a progress
                   graph.
                 </p>
               </div>

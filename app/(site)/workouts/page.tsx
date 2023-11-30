@@ -15,7 +15,7 @@ export default async function Diary() {
     )
   }
 
-  const id = (session as Session)?.user.id
+  const id = session.user.id
   const workouts = await fetchUserWorkouts(id)
 
   if (!workouts || workouts.length === 0) {

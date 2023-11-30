@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { handleLogin } from '@/app/helpers/login-user'
 import Button from '@/app/components/ui/button'
+import { toast } from 'react-hot-toast'
 
 export default function LoginForm() {
   const router = useRouter()
@@ -11,9 +12,13 @@ export default function LoginForm() {
   return (
     <form
       className="space-y-6"
-      action={async (e) => {
-        await handleLogin(data, router)
-      }} // must user server action to utilize formStatus -> refactor w/o state
+      action={async () => {
+        try {
+          await handleLogin(data, router)
+        } catch (e) {
+          toast.error('Something went wrong.')
+        }
+      }}
     >
       <div>
         <label

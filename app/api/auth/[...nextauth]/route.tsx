@@ -34,7 +34,8 @@ export const authOptions = {
           where: { email: credentials.email },
         })
 
-        if (!user || !user?.password) throw new Error('No user found.')
+        if (!user || !user?.password)
+          throw new Error('No user found with email')
 
         const passwordsMatch = await bcrypt.compare(
           credentials.password,

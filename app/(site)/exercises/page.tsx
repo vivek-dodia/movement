@@ -13,7 +13,7 @@ export default async function Exercises() {
       <ProtectRoute message="You must be logged in to view your exercises." />
     )
 
-  const userId = (session as Session)?.user?.id
+  const userId = session.user.id
 
   let workouts = await fetchUserWorkouts(userId)
   const userHistory = getUniqueHistory(workouts)
@@ -36,9 +36,9 @@ export default async function Exercises() {
       <h2 className="text-center text-2xl font-bold leading-9 tracking-tight">
         Your Exercises
       </h2>
-      <h5 className="text-center text-lg leading-9 tracking-tight mb-8">
-        Search for an exercise. See your results.
-      </h5>
+      <p className=" text-gray-500 text-center mb-6 w-full max-w-[550px] mt-6">
+        Search for an exercise you've logged to view your progress.
+      </p>
       <ExerciseForm
         userId={userId}
         workouts={workouts}

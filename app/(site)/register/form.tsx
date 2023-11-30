@@ -4,6 +4,7 @@ import axios from 'axios'
 import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import Button from '@/app/components/ui/button'
+import { handleLogin } from '@/app/helpers/login-user'
 
 export default function RegisterForm() {
   const [data, setData] = useState({ email: '', name: '', password: '' })
@@ -11,12 +12,15 @@ export default function RegisterForm() {
 
   const registerUser = async () => {
     try {
-      await axios.post('/api/register', data).then(() => {
-        toast.success('User has been registered.')
-        router.push('/')
-      })
+      await axios.post('/api/register', data)
+      const loginData = {
+        email: data.email,
+        password: data.password,
+      }
+      await handleLogin(loginData, router)
+      router.push('/')
     } catch (e: any) {
-      if (e.response.data) toast.error(e.response.data)
+      if (e.response.data.error) toast.error(e.response.data.error)
       else toast.error('Something went wrong.')
     }
   }

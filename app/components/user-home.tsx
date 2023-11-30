@@ -7,21 +7,29 @@ import { getDashBoardCharts, getWeightChart } from '../libs/chart'
 import { PiCaretRightBold } from 'react-icons/pi'
 import { GiWeightScale } from 'react-icons/gi'
 import { FaMedal } from 'react-icons/fa6'
+import { HiPlus } from 'react-icons/hi'
 
 type UserHomeProps = {
-  session: any
+  name: string
   data: DashboardData
 }
 
-export default function UserHome({ session, data }: UserHomeProps) {
-  const { name } = session.user
-
+export default function UserHome({ name, data }: UserHomeProps) {
   const { workouts, exercises, reps, sets } = data.totals
 
   const { pieChart, popBarChart, PrBarChart, donutChart } =
     getDashBoardCharts(data)
 
   const lineChart = getWeightChart(data.weights)
+
+  const PR = {
+    value: Array.from(data.exercisePRs.values())[0] ?? 'N/A',
+    subtitle: Array.from(data.exercisePRs.keys())[0] ?? 'Personal Record',
+  }
+
+  const currentWeight = data.weights[data.weights.length - 1]
+    ? data.weights[data.weights.length - 1].weight
+    : 'N/A'
 
   const sections = [
     // {
@@ -51,7 +59,7 @@ export default function UserHome({ session, data }: UserHomeProps) {
       icon: <PiCalendarCheckFill className="text-blue-600 text-3xl" />,
       value: workouts,
       subtitle: 'Workouts',
-      href: '/workouts/new',
+      href: '/workouts',
       text: 'View All',
     },
     {
@@ -73,34 +81,17 @@ export default function UserHome({ session, data }: UserHomeProps) {
     },
     {
       icon: <FaMedal className="text-blue-600 text-3xl" />,
-      value: `${Array.from(data.exercisePRs.values())[0]} lbs.`,
-      subtitle: Array.from(data.exercisePRs.keys())[0],
+      value: `${PR.value} ${typeof PR.value === 'number' ? 'lbs.' : ''}`,
+      subtitle: PR.subtitle,
     },
     {
       icon: <GiWeightScale className="text-blue-600 text-3xl" />,
-      value: '180 lbs.',
+      value: `${currentWeight} ${
+        typeof currentWeight === 'number' ? 'lbs.' : ''
+      }`,
       subtitle: 'Weight',
       href: '/weight',
       text: 'Log Weight',
-    },
-  ]
-
-  const actions = [
-    {
-      title: 'Add Workout',
-      href: '/workouts/new',
-    },
-    {
-      title: 'Log Weight',
-      href: '/weight',
-    },
-    {
-      title: 'View Exercise Data',
-      href: '/exercises',
-    },
-    {
-      title: 'View Workouts',
-      href: '/workouts',
     },
   ]
 
@@ -109,10 +100,19 @@ export default function UserHome({ session, data }: UserHomeProps) {
       <h1 className="text-3xl md:text-left font-extrabold text-center">
         Dashboard
       </h1>
-      <h3 className="mb-10 text-gray-500 md:text-left text-center">
-        Welcome back, {name}.
+      <h3 className="lg:mb-10 mb-6 text-gray-500 md:text-left text-center">
+        Welcome, {name}.
       </h3>
-      <ul className="grid xl:grid-cols-6 md:grid-cols-3 grid-cols-2  gap-4 mb-4">
+      <div className="lg:hidden md:block flex justify-center">
+        <Link
+          href="/workouts/new"
+          className="bg-green-600 text-gray-50 p-2 rounded-md flex items-center justify-center gap-1 w-full max-w-[9rem]"
+        >
+          New Workout <HiPlus />
+        </Link>
+      </div>
+
+      <ul className="grid xl:grid-cols-6 md:grid-cols-3 grid-cols-2 lg:mt-0 mt-6 gap-4 mb-4">
         {miniSections.map((section, index: number) => {
           return (
             <li

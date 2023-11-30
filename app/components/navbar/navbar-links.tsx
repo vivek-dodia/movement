@@ -53,15 +53,7 @@ export default function NavbarLinks() {
             >
               {option.name}
               {option.name === activeSection && (
-                <motion.span
-                  layoutId="activeSection"
-                  transition={{
-                    type: 'spring',
-                    stiffness: 300,
-                    damping: 25,
-                  }}
-                  className=" rounded-md bg-blue-700  absolute inset-0 -z-10"
-                ></motion.span>
+                <span className=" rounded-md bg-blue-700  absolute inset-0 -z-10"></span>
               )}
             </li>
           </Link>

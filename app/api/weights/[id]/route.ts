@@ -1,28 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '../../../libs/prismadb'
 import { getSession } from '@/app/helpers/get-session'
-
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const { id } = params
-
-  let res
-  try {
-    res = await prisma.weightEntry.findUnique({
-      where: {
-        id: id,
-      },
-    })
-  } catch (e) {
-    res = {}
-  }
-
-  prisma.$disconnect()
-
-  return NextResponse.json(res)
-}
+import { Session } from '@/app/libs/types'
 
 export async function DELETE(
   request: NextRequest,
@@ -43,7 +22,7 @@ export async function DELETE(
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
   }
 
-  const userId = (session as any)?.user.id
+  const userId = session.user.id
 
   const user = await prisma.user.findUnique({
     where: {
@@ -80,7 +59,7 @@ export async function PUT(
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
   }
 
-  const userId = (session as any)?.user.id
+  const userId = session.user.id
 
   const user = await prisma.user.findUnique({
     where: {
