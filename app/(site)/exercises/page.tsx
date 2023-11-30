@@ -37,7 +37,7 @@ export default async function Exercises() {
         Your Exercises
       </h2>
       <p className=" text-gray-500 text-center mb-6 w-full max-w-[550px] mt-6">
-        Search for an exercise you've logged to view your progress.
+        Search for an exercise you have logged to view your progress.
       </p>
       <ExerciseForm
         userId={userId}
