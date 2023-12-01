@@ -6,6 +6,7 @@ export const validateExercises = (exercises: Exercises) => {
   }
 
   exercises.forEach((exercise) => {
+    console.log(exercise)
     if (
       !exercise.name ||
       !Array.isArray(exercise.sets) ||
@@ -15,6 +16,10 @@ export const validateExercises = (exercises: Exercises) => {
     } else {
       exercise.name = exercise.name.trim()
     }
+    // remove extra sets with no data
+    exercise.sets = exercise.sets.filter((set) => {
+      return set.reps !== null && set.sets !== null && set.weight !== null
+    })
   })
 
   return exercises

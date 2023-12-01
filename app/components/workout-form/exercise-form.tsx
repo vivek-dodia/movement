@@ -7,6 +7,8 @@ import { ExerciseFormProps } from '../../libs/types'
 import { Sets } from '../../libs/types'
 import { toast } from 'react-hot-toast'
 import SearchInput from '../ui/search-input'
+import Label from '../ui/label'
+import Input from '../ui/input'
 
 export default function ExerciseForm({
   setExercisesData,
@@ -18,6 +20,8 @@ export default function ExerciseForm({
 }: ExerciseFormProps) {
   const [isHidden, setIsHidden] = useState(false)
   const [isInvalid, setIsInvalid] = useState(false)
+
+  console.log(exercisesData)
 
   // update sets, reps, weight, or rpe
   const handleChange = (
@@ -101,12 +105,7 @@ export default function ExerciseForm({
   const form = (
     <div className="w-full bg-gray-100 shadow-md rounded-md py-4 px-3 flex flex-col gap-4 ">
       <div>
-        <label
-          htmlFor={`${exerciseIndex}-exercise`}
-          className="block text-sm font-medium leading-6 mb-1"
-        >
-          Exercise Name
-        </label>
+        <Label htmlFor={`${exerciseIndex}-exercise`}>Exercise Name</Label>
         <SearchInput
           searchType="exercise-name"
           changeValue={(input: string) => handleNameChange(input)}
@@ -117,9 +116,7 @@ export default function ExerciseForm({
           type="text"
           required
           value={exercisesData[exerciseIndex].name}
-          className={`block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ${
-            isInvalid ? 'ring-red-600' : 'ring-gray-300'
-          } placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 `}
+          className={`${isInvalid ? 'ring-red-600' : 'ring-gray-300'} `}
         />
       </div>
       <section className="flex flex-col gap-2">
@@ -131,21 +128,13 @@ export default function ExerciseForm({
             {exerciseFormInputs.map(({ name, label }) => {
               return (
                 <div key={label}>
-                  {i === 0 && (
-                    <label
-                      htmlFor={name}
-                      className="block text-xs sm:text-sm font-medium leading-6 mb-1 ml-1"
-                    >
-                      {label}
-                    </label>
-                  )}
-                  <input
+                  {i === 0 && <Label htmlFor={name}>{label}</Label>}
+                  <Input
                     id={name}
                     name={name}
                     value={exercisesData[exerciseIndex].sets[i][name] || ''}
                     onChange={(e) => handleChange(e, i)}
                     type="number"
-                    className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 text-xs sm:leading-6"
                   />
                 </div>
               )

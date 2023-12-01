@@ -16,6 +16,10 @@ canvas {
   @apply !w-full;
 }
 
+input {
+  touch-action: none;
+}
+
 .other-option {
   line-height: 16px;
   font-weight: normal;

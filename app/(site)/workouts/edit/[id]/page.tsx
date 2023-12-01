@@ -3,6 +3,13 @@ import fetchWorkout from '@/app/helpers/fetch-workout'
 import ProtectRoute from '@/app/components/protect-route'
 import { getSession } from '@/app/helpers/get-session'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Edit Workout',
+  description: 'Edit your workout.',
+}
+
 export default async function EditWorkout({
   params,
 }: {

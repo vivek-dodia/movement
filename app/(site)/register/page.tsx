@@ -5,6 +5,13 @@ import RegisterForm from './form'
 import ProtectRoute from '@/app/components/protect-route'
 import { getSession } from '@/app/helpers/get-session'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Register',
+  description: 'Create an account.',
+}
+
 export default async function Register() {
   const session = await getSession()
 
@@ -36,7 +43,7 @@ export default async function Register() {
             href="/login"
             className="font-semibold leading-6 text-blue-600 hover:text-blue-500"
           >
-            Sign in here.
+            Log in here.
           </Link>
         </p>
       </div>

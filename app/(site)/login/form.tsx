@@ -4,6 +4,10 @@ import { useState } from 'react'
 import { handleLogin } from '@/app/helpers/login-user'
 import Button from '@/app/components/ui/button'
 import { toast } from 'react-hot-toast'
+import Label from '@/app/components/ui/label'
+import { GrMail } from 'react-icons/gr'
+import { FaKey } from 'react-icons/fa6'
+import Input from '@/app/components/ui/input'
 
 export default function LoginForm() {
   const router = useRouter()
@@ -21,14 +25,12 @@ export default function LoginForm() {
       }}
     >
       <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium leading-6 "
-        >
+        <Label htmlFor="email">
+          <GrMail className="inline-block" />
           Email address
-        </label>
+        </Label>
         <div className="mt-2">
-          <input
+          <Input
             id="email"
             name="email"
             type="email"
@@ -36,21 +38,18 @@ export default function LoginForm() {
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
             required
-            className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
 
       <div>
-        <label
-          htmlFor="password"
-          className="block text-sm font-medium leading-6 "
-        >
+        <Label htmlFor="password">
+          <FaKey className="inline-block" />
           Password
-        </label>
+        </Label>
 
         <div className="mt-2">
-          <input
+          <Input
             id="password"
             name="password"
             type="password"
@@ -58,7 +57,6 @@ export default function LoginForm() {
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
             required
-            className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>

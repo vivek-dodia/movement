@@ -16,6 +16,7 @@ import { useRouter } from 'next/navigation'
 import fetchUserWorkouts from '@/app/helpers/fetch-user-workouts'
 import { getUniqueHistory } from '@/app/helpers/filter-history-data'
 import DeleteModal from '../ui/modal'
+import Label from '../ui/label'
 
 export const BASE_EXERCISE = {
   name: '',
@@ -126,12 +127,7 @@ export default function WorkoutForm({ session, workout }: WorkoutFormProps) {
       }}
     >
       <div>
-        <label
-          htmlFor="workout-name"
-          className="block text-sm font-medium leading-6 "
-        >
-          Workout Name
-        </label>
+        <Label htmlFor="workout-name">Workout Name</Label>
 
         <SearchInput
           searchType="name"
@@ -145,16 +141,12 @@ export default function WorkoutForm({ session, workout }: WorkoutFormProps) {
           type="text"
           value={workoutData.name}
           required
-          className={`block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 `}
         />
       </div>
       <div>
-        <label
-          htmlFor="date"
-          className="block text-sm font-medium leading-6 "
-        >
+        <Label htmlFor="date">
           <MdOutlineCalendarMonth className="inline-block" /> Date
-        </label>
+        </Label>
         <div className="mt-2">
           <DatePicker
             setData={setWorkoutData}
@@ -163,12 +155,9 @@ export default function WorkoutForm({ session, workout }: WorkoutFormProps) {
         </div>
       </div>
       <div>
-        <label
-          htmlFor="location"
-          className="block text-sm font-medium leading-6 "
-        >
+        <Label htmlFor="location">
           <MdOutlineLocationOn className="inline-block" /> Location
-        </label>
+        </Label>
         <SearchInput
           searchType="location"
           changeValue={(input: string) => {
@@ -180,7 +169,6 @@ export default function WorkoutForm({ session, workout }: WorkoutFormProps) {
           name="location"
           type="text"
           value={workoutData.location}
-          className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
         />
       </div>
       <section className="flex flex-col gap-3">
@@ -207,12 +195,9 @@ export default function WorkoutForm({ session, workout }: WorkoutFormProps) {
         </div>
       </section>
       <div>
-        <label
-          htmlFor="notes"
-          className="block text-sm font-medium leading-6 "
-        >
+        <Label htmlFor="notes">
           <MdOutlineStickyNote2 className="inline-block" /> Notes
-        </label>
+        </Label>
         <div className="mt-2">
           <textarea
             id="location"

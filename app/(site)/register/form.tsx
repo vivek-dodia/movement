@@ -5,6 +5,10 @@ import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import Button from '@/app/components/ui/button'
 import { handleLogin } from '@/app/helpers/login-user'
+import Label from '@/app/components/ui/label'
+import { GrMail } from 'react-icons/gr'
+import { FaKey, FaUser } from 'react-icons/fa6'
+import Input from '@/app/components/ui/input'
 
 export default function RegisterForm() {
   const [data, setData] = useState({ email: '', name: '', password: '' })
@@ -31,14 +35,12 @@ export default function RegisterForm() {
       action={registerUser}
     >
       <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
+        <Label htmlFor="email">
+          <GrMail className="inline-block" />
           Email address
-        </label>
+        </Label>
         <div className="mt-2">
-          <input
+          <Input
             id="email"
             name="email"
             type="email"
@@ -46,19 +48,16 @@ export default function RegisterForm() {
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
             required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
       <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
+        <Label htmlFor="name">
+          <FaUser className="inline-block" />
           Name
-        </label>
+        </Label>
         <div className="mt-2">
-          <input
+          <Input
             id="name"
             name="name"
             type="text"
@@ -66,22 +65,19 @@ export default function RegisterForm() {
             value={data.name}
             onChange={(e) => setData({ ...data, name: e.target.value })}
             required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
 
       <div>
         <div className="flex items-center justify-between">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
+          <Label htmlFor="password">
+            <FaKey className="inline-block" />
             Password
-          </label>
+          </Label>
         </div>
         <div className="mt-2">
-          <input
+          <Input
             id="password"
             name="password"
             type="password"
@@ -89,7 +85,6 @@ export default function RegisterForm() {
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
             required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>

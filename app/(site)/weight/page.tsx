@@ -4,7 +4,13 @@ import WeightForm from './form'
 import { Fragment } from 'react'
 import WeightChart from './chart'
 import { fetchUserWeights } from '@/app/helpers/fetch-user-weights'
-import { Session } from '@/app/libs/types'
+
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Weight',
+  description: 'Log and view your weight.',
+}
 
 export default async function LogWeight() {
   const session = await getSession()

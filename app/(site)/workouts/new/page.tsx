@@ -2,6 +2,13 @@ import WorkoutForm from '@/app/components/workout-form/workout-form'
 import ProtectRoute from '@/app/components/protect-route'
 import { getSession } from '@/app/helpers/get-session'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'New Workout',
+  description: 'Create a new workout.',
+}
+
 export default async function NewWorkout() {
   const session = await getSession()
 

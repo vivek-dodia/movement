@@ -8,6 +8,9 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
 import { WeightEntries } from '@/app/libs/types'
 import DeleteModal from '@/app/components/ui/modal'
+import { FaWeightScale } from 'react-icons/fa6'
+import Label from '@/app/components/ui/label'
+import Input from '@/app/components/ui/input'
 
 type Data = {
   weight: number | null
@@ -79,12 +82,9 @@ export default function WeightForm({
     >
       <div className="flex xs:flex-row flex-col gap-3 items-center w-full">
         <div className="w-full">
-          <label
-            htmlFor="date"
-            className=" text-sm font-medium leading-6 flex items-center gap-1.5"
-          >
+          <Label htmlFor="date">
             <MdOutlineCalendarMonth className="inline-block" /> Date
-          </label>
+          </Label>
           <div className="mt-2">
             <DatePicker
               setData={setData}
@@ -93,14 +93,12 @@ export default function WeightForm({
           </div>
         </div>
         <div className="w-full">
-          <label
-            htmlFor="weight"
-            className="text-sm font-medium leading-6 flex items-center gap-1.5"
-          >
+          <Label htmlFor="weight">
+            <FaWeightScale className="inline-block" />
             Weight (lbs.)
-          </label>
+          </Label>
           <div className="mt-2">
-            <input
+            <Input
               id="weight"
               name="weight"
               type="number"
@@ -111,7 +109,6 @@ export default function WeightForm({
                 setData({ ...data, weight: parseFloat(e.target.value) })
               }
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
             />
           </div>
         </div>

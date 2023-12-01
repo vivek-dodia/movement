@@ -4,6 +4,12 @@ import { Session, WorkoutInDb } from '@/app/libs/types'
 import ExerciseForm from './form'
 import ProtectRoute from '@/app/components/protect-route'
 import { getSession } from '@/app/helpers/get-session'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Exercises',
+  description: 'View data for an exercise.',
+}
 
 export default async function Exercises() {
   const session = await getSession()

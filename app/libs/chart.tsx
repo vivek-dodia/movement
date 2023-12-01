@@ -334,8 +334,6 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
     },
   }
 
-  console.log(dashboardData.exercisePRs)
-
   const PrBarData = {
     labels: Array.from(dashboardData.exercisePRs.keys()),
     datasets: [
@@ -496,6 +494,8 @@ export const getExerciseChart = (exerciseData: ExerciseData) => {
     ],
   }
 
+  console.log(exerciseData.maxSets)
+
   const lineOptions = {
     responsive: true,
     plugins: {
@@ -517,6 +517,7 @@ export const getExerciseChart = (exerciseData: ExerciseData) => {
             const index = val.dataIndex
             if (exerciseData.maxSets) {
               const set = exerciseData.maxSets[index]
+
               return `${set.weight} lbs - ${set.reps} reps`
             }
             return ''

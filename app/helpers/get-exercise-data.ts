@@ -25,12 +25,15 @@ export const getExerciseData = (
           totalSets += set.sets
           if (set.reps) totalReps += set.sets * set.reps
         }
-        if (set.weight && set.weight) {
-          set.weight > pr.weight &&
-            (pr = { weight: set.weight, rpe: set.rpe, sets: set.sets })
-          set.weight > maxSet.weight && (maxSet.weight = set.weight)
+        if (set.weight) {
+          if (set.weight > pr.weight) {
+            pr = { weight: set.weight, rpe: set.rpe, sets: set.sets }
+          }
+          if (set.weight > maxSet.weight) {
+            maxSet.weight = set.weight
+            if (set.reps) maxSet.reps = set.reps
+          }
         }
-        if (set.reps && set.reps > maxSet.reps) maxSet.reps = set.reps
       })
     })
     if (maxSet.weight > 0 && maxSet.reps > 0) maxSets.push(maxSet)

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '../../../libs/prismadb'
 import { validateExercises } from '@/app/helpers/api-helpers'
 import { getSession } from '@/app/helpers/get-session'
-import { Session } from '@/app/libs/types'
+import { Exercise, Session } from '@/app/libs/types'
 
 export async function GET(
   req: NextRequest,

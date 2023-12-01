@@ -1,10 +1,16 @@
-import { Session } from '@/app/libs/types'
 import fetchUserWorkouts from '@/app/helpers/fetch-user-workouts'
 import { getUniqueHistory } from '@/app/helpers/filter-history-data'
 import Workouts from './workouts'
 import ProtectRoute from '@/app/components/protect-route'
 import { getSession } from '@/app/helpers/get-session'
 import Link from 'next/link'
+
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Workouts',
+  description: 'View all your workouts.',
+}
 
 export default async function Diary() {
   const session = await getSession()

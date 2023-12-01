@@ -4,6 +4,12 @@ import { GiWeightLiftingUp } from 'react-icons/gi'
 import ProtectRoute from '@/app/components/protect-route'
 import LoginForm from './form'
 import { getSession } from '@/app/helpers/get-session'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Login',
+  description: 'Login to your account.',
+}
 
 export default async function Login() {
   const session = await getSession()

@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { SearchInputsProps, Result, Results } from '@/app/libs/types'
 import { filterHistoryData } from '@/app/helpers/filter-history-data'
+import Input from './input'
 
 export default function SearchInput({
   searchType,
@@ -106,7 +107,7 @@ export default function SearchInput({
 
   return (
     <div className="mt-2 relative">
-      <input
+      <Input
         onChange={(e) => {
           handleChange(e.target.value)
         }}
