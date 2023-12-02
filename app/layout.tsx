@@ -5,6 +5,8 @@ import Provider from './context/AuthContext'
 import ToasterContext from './context/ToasterContext'
 import Navbar from './components/navbar'
 import { PrimeReactProvider } from 'primereact/api'
+import 'primereact/resources/themes/saga-blue/theme.css'
+import 'primereact/resources/primereact.min.css'
 import Footer from './components/footer'
 
 const inter = Inter({ subsets: ['latin'] })

@@ -1,20 +1,20 @@
 'use client'
-import { DashboardData } from '../libs/types'
+import { DashboardData } from '@/app/libs/types'
 import { TbRepeat, TbBraces } from 'react-icons/tb'
 import { PiBarbellBold, PiCalendarCheckFill } from 'react-icons/pi'
 import Link from 'next/link'
-import { getDashBoardCharts, getWeightChart } from '../libs/chart'
+import { getDashBoardCharts, getWeightChart } from '@/app/libs/chart'
 import { PiCaretRightBold } from 'react-icons/pi'
 import { GiWeightScale } from 'react-icons/gi'
 import { FaMedal } from 'react-icons/fa6'
 import { HiPlus } from 'react-icons/hi'
 
-type UserHomeProps = {
+type DashboardProps = {
   name: string
   data: DashboardData
 }
 
-export default function UserHome({ name, data }: UserHomeProps) {
+export default function Dashboard({ name, data }: DashboardProps) {
   const { workouts, exercises, reps, sets } = data.totals
 
   const { pieChart, popBarChart, PrBarChart, donutChart } =

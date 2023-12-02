@@ -1,6 +1,6 @@
 'use client'
 
-import WorkoutsList from '@/app/(site)/workouts/workouts-list'
+import WorkoutsList from '@/app/(pages)/workouts/workouts-list'
 import { WorkoutInDb } from '@/app/libs/types'
 import React, { Fragment, useState } from 'react'
 import { PiCaretLeftBold, PiCaretRightBold } from 'react-icons/pi'
