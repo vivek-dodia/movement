@@ -47,7 +47,11 @@ export default function NavbarLinks() {
               className={` text-[0.95rem] font-medium py-2 transition-all  cursor-pointer z-[1] relative mx-2 rounded-md lg:mx-0  px-3  ${
                 activeSection === option.name
                   ? ' text-gray-50'
-                  : '  hover:bg-gray-200 text-gray-950'
+                  : ` ${
+                      pathname === '/'
+                        ? 'hover:bg-blue-600 hover:text-gray-50'
+                        : 'hover:bg-gray-200'
+                    }  text-gray-950`
               }`}
             >
               {option.name}

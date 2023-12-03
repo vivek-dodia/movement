@@ -66,7 +66,7 @@ export default async function Home() {
 
   return (
     <section>
-      <div className="bg-[#2564eb10] absolute top-[-6rem] left-1/2 transform -translate-x-1/2 -z-10 h-[31.25rem] w-full  blur-[10rem]"></div>
+      <div className="bg-[#2564eb50] absolute top-[-6rem] left-1/2 transform -translate-x-1/2 -z-10 h-[31.25rem] w-full  blur-[10rem]"></div>
       <div className="lg:mt-32 mt-8 flex flex-col items-center justify-center mb-24">
         <h1 className="sm:text-6xl text-4xl font-bold tracking-tight mb-8 lg:w-3/4 text-center">
           Reshaping your <span className="text-blue-600">fitness</span> journey.
