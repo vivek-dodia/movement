@@ -6,7 +6,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## About
 
-Movement is a workout tracker web app. Here what it does: 
+I've always enjoyed tracking my progress in the gym, but never found the right app to do so. Every app was either way too complex for my needs or wasn't exactly what I was looking for. So I created [Movement](https://movement-next.vercel.app/), a web app where I can log my workouts and track progress in one place.
+
+Here's what it does: 
 
 - Log your workouts and view them through different filters such as exercises, location, and workout names.
 - View data for each exercise, revealing the progress you've made over time.
