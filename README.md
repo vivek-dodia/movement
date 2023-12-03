@@ -16,6 +16,7 @@ Here's what it does:
 
 ## Tech Stack
 
+- TypeScript
 - Next.js
 - Tailwind CSS
 - Prisma
