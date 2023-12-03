@@ -12,3 +12,5 @@ export default function WeightChart({
 
   return chart
 }
+
+// loading skeleton for dash, the rest fetch data loading....

@@ -10,7 +10,12 @@ export default function DashboardSkeleton() {
       </h1>
       <Skeleton
         width="10rem"
-        className="mt-1 lg:mb-11"
+        className="mt-1 lg:mb-11 mb-9 md:ml-0 md:mr-0 ml-auto mr-auto"
+      ></Skeleton>
+      <Skeleton
+        width="10rem"
+        height="2rem"
+        className="lg:hidden md:ml-0 md:mr-0 ml-auto mr-auto"
       ></Skeleton>
       <ul className="grid xl:grid-cols-6 md:grid-cols-3 grid-cols-2 lg:mt-0 mt-6 gap-4 mb-4">
         {Array(6)

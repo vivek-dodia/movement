@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useNavContext } from '../../context/NavContext'
 
@@ -32,7 +31,7 @@ export default function NavbarLinks() {
   }, [pathname])
 
   return (
-    <ul className=" gap-2 flex flex-col border-b lg:px-0 border-b-gray-50/10 pb-5  lg:flex-row lg:gap-2 lg:ml-4 lg:border-none lg:py-0">
+    <ul className=" gap-2 flex flex-col border-b lg:px-0 border-b-gray-950 pb-5  lg:flex-row lg:gap-2 lg:ml-4 lg:border-none lg:py-0">
       {navigationOptions.map((option, i) => {
         return (
           <Link
@@ -45,15 +44,15 @@ export default function NavbarLinks() {
             className="relative"
           >
             <li
-              className={`text-gray-200 font-medium text-[.95rem] py-2 transition-all  cursor-pointer z-[1] relative mx-2 rounded-md lg:mx-0  px-3  ${
+              className={` text-[0.95rem] font-medium py-2 transition-all  cursor-pointer z-[1] relative mx-2 rounded-md lg:mx-0  px-3  ${
                 activeSection === option.name
                   ? ' text-gray-50'
-                  : '  hover:bg-blue-500 '
+                  : '  hover:bg-gray-200 text-gray-950'
               }`}
             >
               {option.name}
               {option.name === activeSection && (
-                <span className=" rounded-md bg-blue-700  absolute inset-0 -z-10"></span>
+                <span className=" rounded-lg bg-blue-600 absolute inset-0 -z-10"></span>
               )}
             </li>
           </Link>

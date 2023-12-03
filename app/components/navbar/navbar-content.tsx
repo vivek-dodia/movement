@@ -13,24 +13,26 @@ type NavContentProps = {
 }
 
 export default function NavContent({ session }: NavContentProps) {
-  const { isNavExpanded } = useNavContext()
+  const { isNavExpanded, setIsNavExpanded } = useNavContext()
 
   return (
     <nav
-      className={` className="z-[999] w-full bg-blue-600 lg:flex lg:justify-center overflow-y-hidden ${
+      className={` className="z-[999] w-full  lg:flex lg:justify-center overflow-y-hidden border-b border-gray-200 ${
         isNavExpanded ? 'flex-col' : ''
       }`}
     >
       <div
         className={`flex gap-4 max-w-[1100px] w-full items-center px-5 h-[4.5rem] xl:px-0 `}
       >
-        <Link href="/">
-          <GiWeightLiftingUp
-            style={{
-              color: 'rgb(249, 250, 251)',
-              fontSize: '2.25rem',
-            }}
-          />
+        <Link
+          href="/"
+          className="font-bold text-blue-600 flex items-center gap-2 text-xl py-2"
+          onClick={() => {
+            if (isNavExpanded) setIsNavExpanded(false)
+          }}
+        >
+          Movement
+          <GiWeightLiftingUp className="text-2xl" />
         </Link>
 
         <div className="hidden lg:flex lg:justify-between lg:w-full">
@@ -42,7 +44,7 @@ export default function NavContent({ session }: NavContentProps) {
       </div>
       {
         <motion.div
-          className={`flex flex-col bg-blue-600 lg:hidden`}
+          className={`flex flex-col  lg:hidden`}
           initial={{ height: 0, opacity: 0 }}
           animate={{
             height: isNavExpanded ? 'auto' : 0,

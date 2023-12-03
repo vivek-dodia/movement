@@ -14,9 +14,9 @@ export default function NavMobileButton() {
         onClick={() => setIsNavExpanded(!isNavExpanded)}
       >
         {isNavExpanded ? (
-          <FaXmark className="text-2xl text-gray-50" />
+          <FaXmark className="text-2xl text-gray-950" />
         ) : (
-          <FaBars className="text-2xl text-gray-50" />
+          <FaBars className="text-2xl text-gray-950" />
         )}
       </button>
     </>

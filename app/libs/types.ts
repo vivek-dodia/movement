@@ -30,42 +30,6 @@ export type ExerciseFormProps = {
   userId: string
 }
 
-export type HandleEditSets = (
-  e: React.MouseEvent<HTMLButtonElement>,
-  setExercisesData: React.Dispatch<React.SetStateAction<Exercises>>,
-  exercisesData: Exercises,
-  exerciseIndex: number,
-  add?: boolean,
-  index?: number
-) => void
-
-export type HandleEditExercise = (
-  e: React.MouseEvent<HTMLButtonElement>,
-  exercisesData: Exercises,
-  exerciseIndex: number,
-  setIsHidden: React.Dispatch<React.SetStateAction<boolean>>,
-  setIsInvalid: React.Dispatch<React.SetStateAction<boolean>>,
-  hide?: boolean
-) => void
-
-export type HandleChange = (
-  e: React.ChangeEvent<HTMLInputElement>,
-  index: number,
-  setExercisesData: React.Dispatch<React.SetStateAction<Exercises>>,
-  exerciseIndex: number
-) => void
-
-export type HandleAddExercise = (
-  e: React.MouseEvent<HTMLButtonElement>,
-  setExercisesData: React.Dispatch<React.SetStateAction<Exercises>>
-) => void
-
-export type HandleDeleteExercise = (
-  index: number,
-  exercisesData: Exercises,
-  setExercisesData: React.Dispatch<React.SetStateAction<Exercises>>
-) => void
-
 export type UserHistory = {
   workouts: Array<string>
   locations: Array<string>

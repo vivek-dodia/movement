@@ -21,9 +21,6 @@ export default function ExerciseForm({
   const [isHidden, setIsHidden] = useState(false)
   const [isInvalid, setIsInvalid] = useState(false)
 
-  console.log(exercisesData)
-
-  // update sets, reps, weight, or rpe
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
@@ -35,7 +32,7 @@ export default function ExerciseForm({
           return {
             ...exercise,
             sets: exercise.sets.map((set, setIndex) =>
-              setIndex === index ? { ...set, [name]: parseInt(value) } : set
+              setIndex === index ? { ...set, [name]: parseFloat(value) } : set
             ),
           }
         }
@@ -135,6 +132,9 @@ export default function ExerciseForm({
                     value={exercisesData[exerciseIndex].sets[i][name] || ''}
                     onChange={(e) => handleChange(e, i)}
                     type="number"
+                    min={0}
+                    autoComplete="off"
+                    step={name === 'rpe' ? 0.5 : name === 'weight' ? 0.1 : 1}
                   />
                 </div>
               )

@@ -6,7 +6,6 @@ export const validateExercises = (exercises: Exercises) => {
   }
 
   exercises.forEach((exercise) => {
-    console.log(exercise)
     if (
       !exercise.name ||
       !Array.isArray(exercise.sets) ||

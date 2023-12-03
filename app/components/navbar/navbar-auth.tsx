@@ -13,13 +13,13 @@ export default function NavbarAuthButtons({ session }: any) {
     <>
       <Link
         href="/workouts/new"
-        className="text-gray-200 lg:text-gray-50  font-medium text-[.95rem] px-3 py-2 transition-all lg:rounded-md lg:shadow-lg rounded-lg cursor-pointer lg:bg-blue-900 hover:scale-105 hidden  lg:flex items-center gap-1"
+        className="text-gray-200 lg:text-gray-50  font-medium text-[.95rem] px-3 py-2 transition-all lg:rounded-md  rounded-lg cursor-pointer lg:bg-blue-600 hover:scale-105 hidden  lg:flex items-center gap-1"
         onClick={() => setIsNavExpanded(false)}
       >
         New Workout <HiPlus className="inline-block" />
       </Link>
       <button
-        className="text-gray-200 font-medium text-[.95rem] px-3 py-2 transition-all rounded-lg cursor-pointer hover:bg-blue-500  text-left"
+        className="text-gray-950 font-medium text-[.95rem] px-3 py-2 transition-all rounded-lg cursor-pointer hover:bg-gray-200  text-left"
         onClick={async () => {
           setIsNavExpanded(false)
           await signOut({ callbackUrl: '/' })
@@ -34,14 +34,14 @@ export default function NavbarAuthButtons({ session }: any) {
     <>
       <Link
         href="/register"
-        className="text-gray-200  font-medium text-[.95rem] px-3 py-2 transition-all rounded-lg cursor-pointer lg:bg-blue-900 lg:hover:scale-105 lg:hover:bg-blue-900 hover:bg-blue-500   lg:flex items-center gap-1"
+        className="lg:text-gray-50 text-gray-950  font-medium text-[.95rem] px-3 py-2 transition-all rounded-lg cursor-pointer lg:bg-blue-600 lg:hover:scale-105 lg:hover:bg-blue-600 hover:bg-gray-200 lg:flex items-center gap-1"
         onClick={() => setIsNavExpanded(false)}
       >
         Register <BsPersonFillAdd className="inline-block ml-1 text-lg" />
       </Link>
       <Link
         href="/login"
-        className="text-gray-200 font-medium text-[.95rem] px-3 py-2 transition-all rounded-lg cursor-pointer hover:bg-blue-500  text-left"
+        className="text-gray-950 font-medium text-[.95rem] px-3 py-2 transition-all rounded-lg cursor-pointer hover:bg-gray-200  text-left"
         onClick={() => setIsNavExpanded(false)}
       >
         Log in <FiLogIn className="inline-block ml-1 text-lg" />

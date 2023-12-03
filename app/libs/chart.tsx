@@ -102,7 +102,7 @@ export const getWeightChart = (weightEntries: WeightEntries) => {
   }
 
   return weightEntries.length >= 2 ? (
-    <div>
+    <div className="min-h-[350px]">
       <Line
         data={data}
         options={options}
@@ -422,7 +422,7 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
   return {
     pieChart:
       dashboardData.popularWorkouts.size >= 5 ? (
-        <div>
+        <div className="min-h-[350px]">
           <Pie
             data={pieData}
             // @ts-ignore
@@ -433,8 +433,8 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
         noChartMessage('Record at least five workouts to view this chart.')
       ),
     donutChart:
-      dashboardData.locations.size >= 5 ? (
-        <div>
+      dashboardData.locations.size >= 1 ? (
+        <div className="min-h-[350px]">
           <Doughnut
             data={donutData}
             // @ts-ignore
@@ -443,12 +443,12 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
         </div>
       ) : (
         noChartMessage(
-          'Record at least five workouts with locations to view this chart.'
+          'Record at least one workout with a location to view this chart.'
         )
       ),
     popBarChart:
       dashboardData.popularExercises.size >= 5 ? (
-        <div>
+        <div className="min-h-[350px]">
           <Bar
             data={popBarData}
             options={popBarOptions}
@@ -461,7 +461,7 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
       ),
     PrBarChart:
       dashboardData.exercisePRs.size >= 5 ? (
-        <div>
+        <div className="min-h-[350px]">
           <Bar
             data={PrBarData}
             options={PrBarOptions}
@@ -493,8 +493,6 @@ export const getExerciseChart = (exerciseData: ExerciseData) => {
       },
     ],
   }
-
-  console.log(exerciseData.maxSets)
 
   const lineOptions = {
     responsive: true,
@@ -555,9 +553,11 @@ export const getExerciseChart = (exerciseData: ExerciseData) => {
   }
 
   return (
-    <Line
-      data={lineData}
-      options={lineOptions}
-    />
+    <div className=" min-h-[350px]">
+      <Line
+        data={lineData}
+        options={lineOptions}
+      />
+    </div>
   )
 }

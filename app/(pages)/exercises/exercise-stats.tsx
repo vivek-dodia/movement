@@ -52,38 +52,19 @@ export default function ExerciseStats({ exerciseData }: ExerciseStatsProps) {
               </li>
             ))}
           </ul>
-          <div>
-            {exerciseData?.maxSets && exerciseData?.maxSets?.length >= 2 ? (
-              getExerciseChart(exerciseData)
-            ) : (
-              <div className="border rounded-md text-center py-10 px-4 text-sm">
-                <p>
-                  Need 2 workouts with recorded weights to render a progress
-                  graph.
-                </p>
-              </div>
-            )}
-          </div>
+
+          {exerciseData?.maxSets && exerciseData?.maxSets?.length >= 2 ? (
+            getExerciseChart(exerciseData)
+          ) : (
+            <div className="border rounded-md text-center py-10 px-4 text-sm">
+              <p>
+                Need 2 workouts with recorded weights to render a progress
+                graph.
+              </p>
+            </div>
+          )}
         </div>
       </Fragment>
     )
   )
-}
-{
-  /* <ul className="grid md:grid-cols-4 grid-cols-2  gap-4 lg:mb-8 mb-6">
-{miniSections.map((section, index: number) => {
-  return (
-    <li
-      className="bg-white border border-gray-200 p-4 rounded-lg flex flex-col items-center justify-center"
-      key={index}
-    >
-      <div className="rounded-full  p-5  mb-4 bg-gray-50">
-        {section.icon}
-      </div>
-      <span>{section.value}</span>
-      <span className="font-semibold">{section.subtitle}</span>
-    </li>
-  )
-})}
-</ul> */
 }

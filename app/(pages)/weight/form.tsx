@@ -1,7 +1,7 @@
 'use client'
 import { MdOutlineCalendarMonth } from 'react-icons/md'
 import DatePicker from '@/app/components/ui/date-picker'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Button from '@/app/components/ui/button'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
@@ -76,7 +76,7 @@ export default function WeightForm({
   return (
     <form
       className="space-y-6 "
-      action={async (e) => {
+      action={async () => {
         await handleSubmitWeight()
       }}
     >
@@ -103,6 +103,7 @@ export default function WeightForm({
               name="weight"
               type="number"
               step="0.1"
+              min={0}
               autoComplete="off"
               value={data.weight || ''}
               onChange={(e) =>
