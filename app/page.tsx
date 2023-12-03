@@ -138,8 +138,9 @@ export default async function Home() {
         <div className="mb-24 lg:mt-24 mt-12 flex justify-center">
           <div className="text-center">
             <p className="font-medium text-2xl mb-3">
-              "The best workout tracker I've ever used. It's a{' '}
-              <span className="font-bold text-blue-600">game changer</span>."
+              &#34;The best workout tracker I&#39;ve ever used. It&#39;s a{' '}
+              <span className="font-bold text-blue-600">game changer</span>
+              .&#34;
             </p>
 
             <span className="text-gray-500">- Annonymous User</span>
