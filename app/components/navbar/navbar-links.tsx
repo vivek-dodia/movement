@@ -31,7 +31,7 @@ export default function NavbarLinks() {
   }, [pathname])
 
   return (
-    <ul className=" gap-2 flex flex-col border-b lg:px-0 border-b-gray-950 pb-5  lg:flex-row lg:gap-2 lg:ml-4 lg:border-none lg:py-0">
+    <ul className=" gap-2 flex flex-col border-b lg:px-0 border-b-gray-300 pb-5  lg:flex-row lg:gap-2 lg:ml-4 lg:border-none lg:py-0">
       {navigationOptions.map((option, i) => {
         return (
           <Link

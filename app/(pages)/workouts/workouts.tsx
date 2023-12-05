@@ -151,12 +151,7 @@ export default function Workouts({
                   isChecked ? 'bg-blue-100' : ''
                 } px-2 py-2 rounded-md hover:bg-blue-100 active:bg-blue-100 transition-all select-none flex items-center justify-between`}
                 onClick={() => {
-                  if (
-                    selectedFilter === 'workouts' ||
-                    selectedFilter === 'locations'
-                  ) {
-                    setIsDropdownOpen(false)
-                  }
+                  setIsDropdownOpen(false)
                 }}
               >
                 {option}
@@ -201,7 +196,9 @@ export default function Workouts({
                       : ''
                   }`}
                   onClick={() => {
-                    setIsDropdownOpen(true)
+                    if (!isDropdownOpen) setIsDropdownOpen(true)
+                    else if (selectedFilter === filter.value)
+                      setIsDropdownOpen(false)
                     setSelectedFilter(
                       filter.value === 'workouts'
                         ? 'workouts'

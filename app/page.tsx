@@ -68,7 +68,7 @@ export default async function Home() {
     <section>
       <div className="bg-[#2564eb50] absolute top-[-6rem] left-1/2 transform -translate-x-1/2 -z-10 h-[31.25rem] w-full  blur-[10rem]"></div>
       <div className="lg:mt-32 mt-8 flex flex-col items-center justify-center mb-24">
-        <h1 className="sm:text-6xl text-4xl font-bold tracking-tight mb-8 lg:w-3/4 text-center">
+        <h1 className="sm:text-6xl text-5xl font-bold tracking-tight mb-8 lg:w-3/4 text-center">
           Reshaping your <span className="text-blue-600">fitness</span> journey.
         </h1>
         <p className=" text-gray-500 text-lg mb-8 text-center">
@@ -89,7 +89,7 @@ export default async function Home() {
           </a>
         </div>
       </div>
-      <div className="flex md:flex-row flex-col justify-center items-start gap-4 mb-32">
+      <div className="flex md:flex-row flex-col justify-center items-start md:gap-4 gap-10 mb-32">
         {features.map((feautre) => {
           return (
             <div
@@ -125,17 +125,17 @@ export default async function Home() {
                   {section.description}
                 </p>
               </div>
-              <div className="w-full lg:w-1/2 h-[28rem] flex justify-center">
+              <div className="w-full lg:w-1/2  flex justify-center">
                 <Image
                   src={section.image}
                   alt={section.altImage}
-                  className="w-auto object-contain bg-gray-50 shadow-xl border-2 border-gray-700 p-1 rounded-lg"
+                  className="w-auto h-[28rem] object-contain bg-gray-50 shadow-xl border-2 border-gray-700 p-1 rounded-lg"
                 />
               </div>
             </div>
           )
         })}
-        <div className="mb-24 lg:mt-24 mt-12 flex justify-center">
+        <div className="mb-32 lg:mt-24 mt-12 flex justify-center">
           <div className="text-center">
             <p className="font-medium text-2xl mb-3">
               &#34;The best workout tracker I&#39;ve ever used. It&#39;s a{' '}

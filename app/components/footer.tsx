@@ -18,7 +18,7 @@ const icons = [
 
 export default function Footer() {
   return (
-    <footer className="bg-blue-600 w-full p-6 text-gray-50 flex justify-center">
+    <footer className="bg-blue-600 w-full px-6 py-10 text-gray-50 flex justify-center">
       <section className="w-full max-w-[1100px] flex justify-center">
         <div className="flex items-center gap-2">
           <small>

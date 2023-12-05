@@ -42,7 +42,7 @@ export default async function Diary() {
         Filter through your workouts, or{' '}
         <Link
           href="/workouts/new"
-          className=" hover:underline"
+          className=" underline"
         >
           create a new one
         </Link>

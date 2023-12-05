@@ -7,6 +7,7 @@ import NavbarAuthButtons from './navbar-auth'
 import NavMobileButton from './navbar-mobile-dropdown'
 import { useNavContext } from '../../context/NavContext'
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 type NavContentProps = {
   session: any
@@ -14,12 +15,13 @@ type NavContentProps = {
 
 export default function NavContent({ session }: NavContentProps) {
   const { isNavExpanded, setIsNavExpanded } = useNavContext()
+  const pathname = usePathname()
 
   return (
     <nav
-      className={` className="z-[999] w-full  lg:flex lg:justify-center overflow-y-hidden border-b border-gray-200 ${
-        isNavExpanded ? 'flex-col' : ''
-      }`}
+      className={` className="z-[999] w-full  lg:flex lg:justify-center overflow-y-hidden ${
+        pathname === '/' ? '' : 'border-b border-gray-100'
+      } ${isNavExpanded ? 'flex-col' : ''}`}
     >
       <div
         className={`flex gap-4 max-w-[1100px] w-full items-center px-5 h-[4.5rem] xl:px-0 `}
@@ -36,7 +38,7 @@ export default function NavContent({ session }: NavContentProps) {
         </Link>
 
         <div className="hidden lg:flex lg:justify-between lg:w-full">
-          <NavbarLinks />
+          {session && <NavbarLinks />}
           <NavbarAuthButtons session={session} />
         </div>
 
@@ -55,7 +57,7 @@ export default function NavContent({ session }: NavContentProps) {
         >
           {
             <>
-              <NavbarLinks />
+              {session && <NavbarLinks />}
               <NavbarAuthButtons session={session} />
             </>
           }
