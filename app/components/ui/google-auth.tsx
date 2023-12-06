@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { signIn } from 'next-auth/react'
-import google from '../../public/google.png'
+import google from '@/public/google.svg'
 import Image from 'next/image'
 
 type GoogleAuthButtonProps = {
@@ -20,7 +20,7 @@ export default function GoogleAuthButton({ signin }: GoogleAuthButtonProps) {
       <button
         onClick={async () => {
           await signIn('google', {
-            callbackUrl: 'https://movement-next.vercel.app',
+            callbackUrl: 'http://localhost:3000',
           })
         }}
         className="flex gap-2 items-center w-full justify-center transition-all rounded-md bg-white ring-1 ring-inset ring-gray-300 px-3 py-1.5 text-sm font-medium leading-6 text-gray-950 shadow-sm disabled:bg-gray-300 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:scale-[0.99]"

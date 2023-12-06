@@ -58,9 +58,13 @@ export default function ExerciseForm({
           </Button>
         </div>
       </form>
-      <ExerciseStats exerciseData={exerciseData} />
+
+      <ExerciseStats
+        exerciseData={exerciseData}
+        userHistory={userHistory}
+      />
     </Fragment>
   )
 
-  return <Fragment>{form}</Fragment>
+  return form
 }

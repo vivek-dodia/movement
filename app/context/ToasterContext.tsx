@@ -9,6 +9,9 @@ export default function ToasterContext() {
         position="top-center"
         toastOptions={{
           duration: 4000,
+          style: {
+            width: 'auto',
+          },
         }}
       />
     </>

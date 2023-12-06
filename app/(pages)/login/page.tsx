@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import GoogleAuthButton from '@/app/components/google-auth'
+import GoogleAuthButton from '@/app/components/ui/google-auth'
 import { GiWeightLiftingUp } from 'react-icons/gi'
 import ProtectRoute from '@/app/components/protect-route'
 import LoginForm from './form'

@@ -4,15 +4,21 @@ import { Dialog, Transition } from '@headlessui/react'
 import { PiWarning } from 'react-icons/pi'
 import Button from './button'
 
+type DeleteModalProps = {
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  head: string
+  body: string
+  onDelete: () => Promise<void>
+}
+
 export default function DeleteModal({
   open,
   setOpen,
+  head,
+  body,
   onDelete,
-}: {
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  onDelete: () => Promise<void>
-}) {
+}: DeleteModalProps) {
   const cancelButtonRef = useRef(null)
 
   return (
@@ -63,13 +69,10 @@ export default function DeleteModal({
                         as="h3"
                         className="text-base font-semibold leading-6 text-gray-900"
                       >
-                        Delete Workout
+                        {head}
                       </Dialog.Title>
                       <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          Are you sure you want to delete your workout? This
-                          action cannot be undone.
-                        </p>
+                        <p className="text-sm text-gray-500">{body}</p>
                       </div>
                     </div>
                   </div>

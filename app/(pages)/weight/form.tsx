@@ -7,8 +7,8 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
 import { WeightEntries } from '@/app/libs/types'
-import DeleteModal from '@/app/components/ui/modal'
-import { FaWeightScale } from 'react-icons/fa6'
+import DeleteModal from '@/app/components/ui/delete-modal'
+import { GiWeightScale } from 'react-icons/gi'
 import Label from '@/app/components/ui/label'
 import Input from '@/app/components/ui/input'
 
@@ -94,7 +94,7 @@ export default function WeightForm({
         </div>
         <div className="w-full">
           <Label htmlFor="weight">
-            <FaWeightScale className="inline-block" />
+            <GiWeightScale className="inline-block" />
             Weight (lbs.)
           </Label>
           <div className="mt-2">
@@ -138,6 +138,8 @@ export default function WeightForm({
         <DeleteModal
           open={openDeleteWarning}
           setOpen={setOpenDeleteWarning}
+          head="Delete Weight Entry"
+          body="Are you sure you want to delete this weight entry? This action cannot be reversed."
           onDelete={handleDeleteWeight}
         />
       )}

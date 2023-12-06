@@ -89,7 +89,12 @@ export default function RegisterForm() {
         </div>
       </div>
 
-      <Button type="submit">Register</Button>
+      <Button
+        type="submit"
+        success
+      >
+        Register
+      </Button>
     </form>
   )
 }

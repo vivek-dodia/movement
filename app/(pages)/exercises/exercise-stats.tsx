@@ -1,15 +1,20 @@
-import { ExerciseData } from '@/app/libs/types'
+import { ExerciseData, UserHistory } from '@/app/libs/types'
 import React, { Fragment } from 'react'
 import { getExerciseChart } from '@/app/libs/chart'
 import { TbRepeat, TbBraces } from 'react-icons/tb'
-import { PiBarbellBold, PiCalendarCheckFill } from 'react-icons/pi'
+import { PiCalendarCheckFill } from 'react-icons/pi'
 import { FaMedal } from 'react-icons/fa6'
+import ExerciseNameChangeForm from './change-name-modal'
 
 type ExerciseStatsProps = {
   exerciseData: ExerciseData | null
+  userHistory: UserHistory
 }
 
-export default function ExerciseStats({ exerciseData }: ExerciseStatsProps) {
+export default function ExerciseStats({
+  exerciseData,
+  userHistory,
+}: ExerciseStatsProps) {
   const stats = [
     {
       icon: <PiCalendarCheckFill className="text-blue-600 text-3xl" />,
@@ -29,7 +34,7 @@ export default function ExerciseStats({ exerciseData }: ExerciseStatsProps) {
     {
       icon: <FaMedal className="text-blue-600 text-3xl" />,
       value: `${exerciseData?.pr.weight} lbs.`,
-      subtitle: 'Personal Record',
+      subtitle: 'PR',
     },
   ]
 
@@ -37,7 +42,10 @@ export default function ExerciseStats({ exerciseData }: ExerciseStatsProps) {
     exerciseData && (
       <Fragment>
         <div className="w-full  mt-8 bg-white border border-gray-200 p-4 rounded-lg max-w-[800px] shadow-sm py-4">
-          <h5 className="font-semibold mb-4">{exerciseData?.exercise}</h5>
+          <ExerciseNameChangeForm
+            name={exerciseData?.exercise}
+            userHistory={userHistory}
+          />
           <ul className="grid md:grid-cols-4 grid-cols-2 mb-4 gap-4">
             {stats.map((stat, index) => (
               <li

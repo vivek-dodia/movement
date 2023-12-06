@@ -25,6 +25,20 @@ export default async function LogWeight() {
 
   const weightEntries = await fetchUserWeights(userId)
 
+  let weightDifference = 0
+  let daysDifference = 0
+
+  if (weightEntries.length >= 2) {
+    weightDifference =
+      weightEntries[weightEntries.length - 1].weight - weightEntries[0].weight
+
+    daysDifference = Math.round(
+      (new Date(weightEntries[weightEntries.length - 1].date).getTime() -
+        new Date(weightEntries[0].date).getTime()) /
+        (1000 * 3600 * 24)
+    )
+  }
+
   return (
     <Fragment>
       <section className="flex min-h-full flex-1 flex-col justify-center lg:px-8">
@@ -49,7 +63,21 @@ export default async function LogWeight() {
           } `}
         >
           {weightEntries.length >= 2 ? (
-            <WeightChart weightEntries={weightEntries} />
+            <Fragment>
+              <WeightChart weightEntries={weightEntries} />
+              {weightDifference !== 0 && (
+                <span className="text-sm ">
+                  <span
+                    className={`font-medium ${
+                      weightDifference > 0 ? 'text-green-600' : 'text-red-600'
+                    }`}
+                  >
+                    {weightDifference > 0 ? '+' : '-'} {weightDifference} lbs.
+                  </span>{' '}
+                  across {daysDifference} days.
+                </span>
+              )}
+            </Fragment>
           ) : weightEntries.length === 1 ? (
             <p className="text-center text-sm ">
               Add at least two weight entries to view weight chart. Previous

@@ -26,10 +26,14 @@ export default function Button({
 
   return (
     <button
-      className={`py-2 w-full min-w-[8rem]  px-5 shadow-sm flex text-sm h-full justify-center items-center gap-2 transition-all text-gray-50 font-medium  hover:brightness-105 active:scale-95 ${
+      className={`py-2 w-full min-w-[8rem]  px-5 shadow-sm flex text-sm h-full justify-center items-center gap-2 transition-all text-gray-50 font-medium  active:scale-95 ${
         pill ? 'rounded-full' : 'rounded-md'
       } ${
-        success ? 'bg-green-600' : danger ? 'bg-red-600' : 'bg-blue-600'
+        success
+          ? 'bg-green-600 hover:brightness-105'
+          : danger
+          ? 'bg-red-600 hover:brightness-105'
+          : 'border border-gray-300 bg-gray-200  text-gray-950'
       } ${className}`}
       disabled={pending}
       type={type}

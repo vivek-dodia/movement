@@ -17,7 +17,7 @@ export const validateExercises = (exercises: Exercises) => {
     }
     // remove extra sets with no data
     exercise.sets = exercise.sets.filter((set) => {
-      return set.reps !== null && set.sets !== null && set.weight !== null
+      return set.reps !== null || set.sets !== null || set.weight !== null
     })
   })
 

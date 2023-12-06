@@ -159,7 +159,7 @@ export default function ExerciseForm({
           className="font-medium leading-6 underline"
           onClick={(e) => handleVisibility(e, true)}
         >
-          Save
+          Close
         </button>
         <button
           onClick={(e) => {

@@ -1,4 +1,4 @@
-import GoogleAuthButton from '@/app/components/google-auth'
+import GoogleAuthButton from '@/app/components/ui/google-auth'
 import Link from 'next/link'
 import { GiWeightLiftingUp } from 'react-icons/gi'
 import RegisterForm from './form'

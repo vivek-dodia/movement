@@ -62,7 +62,12 @@ export default function LoginForm() {
       </div>
 
       <div>
-        <Button type="submit">Log in</Button>
+        <Button
+          type="submit"
+          success
+        >
+          Log in
+        </Button>
       </div>
     </form>
   )

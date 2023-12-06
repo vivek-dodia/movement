@@ -15,7 +15,7 @@ export default function NavbarAuthButtons({ session }: any) {
     <>
       <Link
         href="/workouts/new"
-        className="text-gray-200 lg:text-gray-50  font-medium text-[.95rem] px-3 py-2 transition-all lg:rounded-md  rounded-lg cursor-pointer lg:bg-blue-600 hover:scale-105 hidden  lg:flex items-center gap-1"
+        className="text-gray-200 lg:text-gray-50  font-medium text-[.95rem] px-3 py-2 transition-all lg:rounded-md  rounded-lg cursor-pointer lg:bg-gray-700 hover:scale-105 hidden  lg:flex items-center gap-1"
         onClick={() => setIsNavExpanded(false)}
       >
         New Workout <HiPlus className="inline-block" />

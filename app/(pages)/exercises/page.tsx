@@ -1,6 +1,6 @@
 import fetchUserWorkouts from '@/app/helpers/fetch-user-workouts'
 import { getUniqueHistory } from '@/app/helpers/filter-history-data'
-import { Session, WorkoutInDb } from '@/app/libs/types'
+import { WorkoutInDb } from '@/app/libs/types'
 import ExerciseForm from './form'
 import ProtectRoute from '@/app/components/protect-route'
 import { getSession } from '@/app/helpers/get-session'
@@ -43,7 +43,8 @@ export default async function Exercises() {
         Your Exercises
       </h2>
       <p className=" text-gray-500 text-center mb-6 w-full max-w-[550px] mt-6">
-        Search for an exercise you have logged to view your progress.
+        Search for an exercise you have logged to view your progress or to
+        change its name.
       </p>
       <ExerciseForm
         userId={userId}

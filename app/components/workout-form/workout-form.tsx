@@ -15,7 +15,7 @@ import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import fetchUserWorkouts from '@/app/helpers/fetch-user-workouts'
 import { getUniqueHistory } from '@/app/helpers/filter-history-data'
-import DeleteModal from '../ui/modal'
+import DeleteModal from '../ui/delete-modal'
 import Label from '../ui/label'
 
 export const BASE_EXERCISE = {
@@ -236,6 +236,8 @@ export default function WorkoutForm({ session, workout }: WorkoutFormProps) {
         <DeleteModal
           open={openDeleteWarning}
           setOpen={setOpenDeleteWarning}
+          head={`Delete ${workoutData.name} Workout`}
+          body={`Are you sure you want to delete your workout? This action cannot be reversed.`}
           onDelete={handleDeleteWorkout}
         />
       )}
