@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { signIn } from 'next-auth/react'
-import google from '@/public/google.svg'
+import google from '../../../public/google.png'
 import Image from 'next/image'
 
 type GoogleAuthButtonProps = {
