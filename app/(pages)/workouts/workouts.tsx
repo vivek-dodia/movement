@@ -32,7 +32,7 @@ type SelectedOptions = {
   exercises: Array<string>
 }
 
-const NUM_WORKOUTS_PER_PAGE = 5
+const NUM_WORKOUTS_PER_PAGE = 10
 
 export default function Workouts({
   workoutsData,

@@ -102,7 +102,7 @@ export const getWeightChart = (weightEntries: WeightEntries) => {
   }
 
   return weightEntries.length >= 2 ? (
-    <div className="min-h-[350px]">
+    <div className="min-h-[300px]">
       <Line
         data={data}
         options={options}
@@ -422,7 +422,7 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
   return {
     pieChart:
       dashboardData.popularWorkouts.size >= 5 ? (
-        <div className="min-h-[350px]">
+        <div className="min-h-[300px]">
           <Pie
             data={pieData}
             // @ts-ignore
@@ -434,7 +434,7 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
       ),
     donutChart:
       dashboardData.locations.size >= 1 ? (
-        <div className="min-h-[350px]">
+        <div className="min-h-[300px]">
           <Doughnut
             data={donutData}
             // @ts-ignore
@@ -448,7 +448,7 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
       ),
     popBarChart:
       dashboardData.popularExercises.size >= 5 ? (
-        <div className="min-h-[350px]">
+        <div className="min-h-[300px]">
           <Bar
             data={popBarData}
             options={popBarOptions}
@@ -461,7 +461,7 @@ export const getDashBoardCharts = (dashboardData: DashboardData) => {
       ),
     PrBarChart:
       dashboardData.exercisePRs.size >= 5 ? (
-        <div className="min-h-[350px]">
+        <div className="min-h-[300px]">
           <Bar
             data={PrBarData}
             options={PrBarOptions}
@@ -553,7 +553,7 @@ export const getExerciseChart = (exerciseData: ExerciseData) => {
   }
 
   return (
-    <div className=" min-h-[350px]">
+    <div className=" min-h-[300px]">
       <Line
         data={lineData}
         options={lineOptions}

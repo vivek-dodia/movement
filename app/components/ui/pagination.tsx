@@ -2,7 +2,7 @@
 
 import WorkoutsList from '@/app/(pages)/workouts/workouts-list'
 import { WorkoutInDb } from '@/app/libs/types'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import { PiCaretLeftBold, PiCaretRightBold } from 'react-icons/pi'
 
 type PaginationProps = {

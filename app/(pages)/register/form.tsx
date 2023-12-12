@@ -83,6 +83,8 @@ export default function RegisterForm() {
             type="password"
             autoComplete="current-password"
             value={data.password}
+            minLength={6}
+            maxLength={20}
             onChange={(e) => setData({ ...data, password: e.target.value })}
             required
           />

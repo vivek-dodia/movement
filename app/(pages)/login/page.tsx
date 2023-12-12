@@ -31,6 +31,11 @@ export default async function Login() {
           <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight ">
             Log in to your account
           </h2>
+          <h5 className="text-gray-400 text-sm">
+            Demo login - email:{' '}
+            <span className="text-gray-950">test@gmail.com</span> password:{' '}
+            <span className="text-gray-950">test</span>
+          </h5>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

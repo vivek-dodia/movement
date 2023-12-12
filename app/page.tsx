@@ -88,6 +88,11 @@ export default async function Home() {
             Learn more <IoArrowForwardOutline />
           </a>
         </div>
+        <h5 className="text-gray-400 text-sm mt-8">
+          Demo login - email:{' '}
+          <span className="text-gray-950">test@gmail.com</span> password:{' '}
+          <span className="text-gray-950">test</span>
+        </h5>
       </div>
       <div className="flex md:flex-row flex-col justify-center items-start md:gap-4 gap-10 mb-32">
         {features.map((feautre) => {
